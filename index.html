@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jessy & Gabriel</title>
+  <meta name="description"
+    content="Estás invitado a la boda de Jessy & Gabriel. Confirma tu asistencia y conoce todos los detalles." />
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Playfair Display"', 'serif'],
+            body: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            sage: {
+              50: '#f0f2f8',
+              100: '#dce1ed',
+              200: '#b8c2db',
+              300: '#8e9ec4',
+              400: '#6b7db0',
+              500: '#3d5a80',
+              600: '#2c4466',
+              700: '#1e3350',
+              800: '#16283f',
+              900: '#0f1d30',
+            },
+            cream: {
+              50: '#fdfcfa',
+              100: '#faf6ef',
+              200: '#f3ecdd',
+              300: '#e8dbc3',
+            },
+            blush: {
+              100: '#fef3f0',
+              200: '#fde0d8',
+              300: '#f9c4b8',
+            },
+            gold: {
+              400: '#c9a84c',
+              500: '#b8952e',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+    rel="stylesheet" />
+
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    /* ── Base ──────────────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fdfcfa;
+      color: #16283f;
+      overflow-x: hidden;
+    }
+
+    /* ── Decorative dividers ──────────────────────────── */
+    .ornament::before {
+      content: '';
+      display: block;
+      width: 5rem;
+      height: 1px;
+      margin: 0 auto 1.5rem;
+      background: linear-gradient(90deg, transparent, #3d5a80, transparent);
+    }
+
+    /* ── Section reveal animation ─────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Hero slideshow ────────────────────────────────── */
+    .hero-bg {
+      position: relative;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center 65%;
+      background-attachment: scroll;
+      transition: opacity 1.2s ease-in-out;
+      opacity: 0;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+    }
+
+    @media (min-width: 768px) {
+      .hero-slide {
+        background-attachment: fixed;
+      }
+    }
+
+    /* ── Countdown pill ───────────────────────────────── */
+    .cd-unit {
+      min-width: 4rem;
+    }
+
+    /* ── Hero RSVP CTA ───────────────────────────────── */
+    .hero-rsvp {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .7rem 2rem;
+      margin-top: 2rem;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(255, 255, 255, .35);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: .85rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background .3s, border-color .3s, transform .2s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: heroRsvpGlow 3s ease-in-out infinite;
+    }
+
+    .hero-rsvp:hover {
+      background: rgba(255, 255, 255, .22);
+      border-color: rgba(255, 255, 255, .6);
+      transform: scale(1.04);
+    }
+
+    @keyframes heroRsvpGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, .15);
+      }
+
+      50% {
+        box-shadow: 0 0 20px 4px rgba(255, 255, 255, .12);
+      }
+    }
+
+    /* ── Swiper overrides ─────────────────────────────── */
+    .swiper {
+      width: 100%;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 22rem;
+      object-fit: cover;
+      border-radius: .75rem;
+    }
+
+    @media (min-width: 768px) {
+      .swiper-slide img {
+        height: 28rem;
+      }
+    }
+
+    .swiper-pagination-bullet-active {
+      background: #3d5a80 !important;
+    }
+
+    /* ── Gift card ────────────────────────────────────── */
+    .gift-card {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* ── Nav indicator ────────────────────────────────── */
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #b8c2db;
+      transition: background .3s, transform .3s;
+    }
+
+    .nav-dot.active {
+      background: #3d5a80;
+      transform: scale(1.4);
+    }
+
+    /* ── Floating nav ─────────────────────────────────── */
+    #floating-nav {
+      transition: opacity .3s, transform .3s;
+    }
+
+    #floating-nav.hidden-nav {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-50%) translateY(20px);
+    }
+
+    /* ── Floating Music Toggle ────────────────────────── */
+    #music-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(61, 90, 128, .9);
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+      transition: background .3s, transform .2s;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s, background .3s, transform .2s;
+    }
+
+    #music-toggle.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #music-toggle:hover {
+      background: rgba(44, 68, 102, .95);
+      transform: scale(1.1);
+    }
+
+    /* pulsing ring animation when music is playing */
+    #music-toggle.playing::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 2px solid rgba(61, 90, 128, .5);
+      animation: musicPulse 2s ease-out infinite;
+    }
+
+    @keyframes musicPulse {
+      0% {
+        transform: scale(1);
+        opacity: .7;
+      }
+
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <!-- Wedding data (editable) -->
+  <script src="data.js"></script>
+</head>
+
+<body class="antialiased">
+
+  <!-- Hidden audio element for background music -->
+  <audio id="bg-music" loop preload="auto"></audio>
+
+  <!-- Floating music toggle (appears after entering) -->
+  <button id="music-toggle" type="button" aria-label="Toggle music" title="Música">
+    <svg id="music-icon-on" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+    </svg>
+    <svg id="music-icon-off" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+      <path d="M9 18V5l12-2v13" />
+      <circle cx="6" cy="18" r="3" />
+      <circle cx="18" cy="16" r="3" />
+      <line x1="1" y1="1" x2="23" y2="23" stroke-width="2.5" />
+    </svg>
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════
+       FLOATING NAV (dots)
+       ═══════════════════════════════════════════════════ -->
+  <nav id="floating-nav"
+    class="hidden-nav fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 bg-white/80 backdrop-blur-md shadow-lg rounded-full px-5 py-3">
+    <a href="#hero" class="nav-dot" data-section="hero" aria-label="Inicio"></a>
+    <a href="#detalles" class="nav-dot" data-section="detalles" aria-label="Detalles"></a>
+    <a href="#galeria" class="nav-dot" data-section="galeria" aria-label="Galería"></a>
+    <a href="#rsvp" class="nav-dot" data-section="rsvp" aria-label="Confirmar"></a>
+    <a href="#info" class="nav-dot" data-section="info" aria-label="Info"></a>
+    <a href="#regalos" class="nav-dot" data-section="regalos" aria-label="Regalos"></a>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════════════ -->
+  <header id="hero" class="hero-bg relative flex items-center justify-center min-h-screen text-center text-white">
+    <!-- Background slideshow layers (injected by JS) -->
+    <div id="hero-slides"></div>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60 z-[1]"></div>
+
+    <div class="relative z-10 px-6 py-20 max-w-2xl mx-auto">
+      <p id="hero-tagline" class="font-body text-sm uppercase tracking-[.35em] text-cream-200 mb-4 reveal"></p>
+      <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-semibold leading-tight tracking-wide reveal">
+        <span id="hero-name1"></span>
+        <span class="block font-display italic font-normal text-3xl sm:text-4xl my-2 text-gold-400">&amp;</span>
+        <span id="hero-name2"></span>
+      </h1>
+      <p id="hero-date" class="mt-6 text-lg sm:text-xl font-light tracking-widest text-cream-100 reveal"></p>
+
+      <!-- Countdown -->
+      <div id="countdown" class="mt-10 flex justify-center gap-4 reveal">
+        <div class="cd-unit text-center">
+          <span id="cd-days" class="block text-3xl sm:text-4xl font-display font-semibold">--</span>
+          <span class="text-xs uppercase tracking-widest text-cream-200">Días</span>
+        </div>
+        <div class="cd-unit text-center">
+          <span id="cd-hours" class="block text-3xl sm:text-4xl font-display font-semibold">--</span>
+          <span class="text-xs uppercase tracking-widest text-cream-200">Hrs</span>
+        </div>
+        <div class="cd-unit text-center">
+          <span id="cd-mins" class="block text-3xl sm:text-4xl font-display font-semibold">--</span>
+          <span class="text-xs uppercase tracking-widest text-cream-200">Min</span>
+        </div>
+        <div class="cd-unit text-center">
+          <span id="cd-secs" class="block text-3xl sm:text-4xl font-display font-semibold">--</span>
+          <span class="text-xs uppercase tracking-widest text-cream-200">Seg</span>
+        </div>
+      </div>
+
+      <!-- RSVP CTA (prominent placement) -->
+      <a id="hero-rsvp-btn" href="#form-rsvp" class="hero-rsvp reveal">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path
+            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        Confirmar Asistencia
+      </a>
+
+      <!-- Scroll hint -->
+      <div class="mt-10 animate-bounce">
+        <svg class="mx-auto w-6 h-6 text-cream-200" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+          <path d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════
+       DETALLES (Cuándo & Dónde)
+       ═══════════════════════════════════════════════════ -->
+  <section id="detalles" class="py-24 px-6 bg-cream-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="ornament reveal"></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-14 reveal">Detalles de la Celebración</h2>
+
+      <div class="grid sm:grid-cols-3 gap-8">
+        <!-- Cuándo -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">📅</div>
+          <h3 class="font-display text-xl text-sage-700 mb-2">Cuándo</h3>
+          <p id="detail-date" class="text-sage-600 font-light leading-relaxed"></p>
+          <p id="detail-time" class="mt-1 text-sage-500 text-sm tracking-wide"></p>
+          <p id="detail-date-detail" class="mt-1 text-sage-400 text-xs italic"></p>
+          <button id="add-to-calendar-btn" type="button"
+            class="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-sage-500 hover:bg-sage-600 text-white rounded-full text-sm font-medium transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Agregar al Calendario
+          </button>
+        </div>
+        <!-- Ceremonia -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">⛪</div>
+          <h3 class="font-display text-xl text-sage-700 mb-2">Ceremonia</h3>
+          <p id="detail-ceremony-name" class="text-sage-600 font-light leading-relaxed"></p>
+          <p id="detail-ceremony-address" class="mt-1 text-sage-500 text-sm"></p>
+          <p id="detail-ceremony-time" class="mt-1 text-sage-500 text-sm tracking-wide"></p>
+          <a id="detail-ceremony-maps" href="#" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-sage-500 hover:bg-sage-600 text-white rounded-full text-sm font-medium transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Ver Mapa
+          </a>
+        </div>
+        <!-- Recepción -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">🥂</div>
+          <h3 class="font-display text-xl text-sage-700 mb-2">Recepción</h3>
+          <p id="detail-reception-name" class="text-sage-600 font-light leading-relaxed"></p>
+          <p id="detail-reception-address" class="mt-1 text-sage-500 text-sm"></p>
+          <p id="detail-reception-time" class="mt-1 text-sage-500 text-sm tracking-wide"></p>
+          <a id="detail-reception-maps" href="#" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-2 mt-5 px-5 py-2.5 bg-sage-500 hover:bg-sage-600 text-white rounded-full text-sm font-medium transition-colors">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z" />
+              <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            Ver Mapa
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       GALERÍA
+       ═══════════════════════════════════════════════════ -->
+  <section id="galeria" class="py-24 px-6 bg-white">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="ornament reveal"></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-4 reveal">Nuestra Historia</h2>
+      <p class="text-sage-500 mb-12 reveal">Algunos de nuestros momentos favoritos juntos</p>
+
+      <!-- Swiper -->
+      <div class="swiper gallery-swiper reveal">
+        <div class="swiper-wrapper" id="gallery-wrapper">
+          <!-- slides injected by JS -->
+        </div>
+        <div class="swiper-pagination mt-6"></div>
+      </div>
+
+      <a id="album-link" href="#" target="_blank" rel="noopener"
+        class="inline-flex items-center gap-2 mt-10 text-sage-500 hover:text-sage-700 text-sm font-medium transition-colors reveal">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14" />
+          <rect x="3" y="3" width="18" height="18" rx="2" />
+        </svg>
+        Ver álbum completo
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       INTERACCIÓN — RSVP + Fotos + Música
+       ═══════════════════════════════════════════════════ -->
+  <section id="rsvp" class="py-24 px-6 bg-sage-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="ornament reveal"></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-14 reveal">Tu Participación</h2>
+
+      <div class="grid sm:grid-cols-3 gap-8">
+        <!-- RSVP -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">💌</div>
+          <h3 class="font-display text-lg text-sage-700 mb-2">Confirma tu Asistencia</h3>
+          <p class="text-sage-500 text-sm mb-5">Por favor confirma tu participación antes del 10 de Abril.</p>
+          <a id="rsvp-btn" href="#form-rsvp"
+            class="inline-block w-full px-5 py-3 bg-sage-500 hover:bg-sage-600 text-white rounded-full text-sm font-medium transition-colors">
+            Confirmar RSVP
+          </a>
+        </div>
+        <!-- Upload Photos -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">📸</div>
+          <h3 class="font-display text-lg text-sage-700 mb-2">Subir tus Fotos</h3>
+          <p class="text-sage-500 text-sm mb-5">Comparte las fotos que tomes durante la fiesta.</p>
+          <a id="upload-btn" href="#" target="_blank" rel="noopener"
+            class="inline-block w-full px-5 py-3 border-2 border-sage-400 text-sage-600 hover:bg-sage-100 rounded-full text-sm font-medium transition-colors">
+            Subir Fotos
+          </a>
+        </div>
+        <!-- Music -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">🎶</div>
+          <h3 class="font-display text-lg text-sage-700 mb-2">Sugerir una Canción</h3>
+          <p class="text-sage-500 text-sm mb-5">¿Qué canción no puede faltar en la pista?</p>
+          <a id="music-btn" href="#" target="_blank" rel="noopener"
+            class="inline-block w-full px-5 py-3 border-2 border-sage-400 text-sage-600 hover:bg-sage-100 rounded-full text-sm font-medium transition-colors">
+            Sugerir Canción
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       INFORMACIÓN IMPORTANTE
+       ═══════════════════════════════════════════════════ -->
+  <section id="info" class="py-24 px-6 bg-cream-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="ornament reveal"></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-14 reveal">Información Importante</h2>
+
+      <div class="grid sm:grid-cols-2 gap-10">
+        <!-- Dress Code -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">👔</div>
+          <h3 class="font-display text-xl text-sage-700 mb-2">Código de Vestimenta</h3>
+          <p id="info-dress" class="text-sage-600 font-light"></p>
+        </div>
+        <!-- Kids Policy -->
+        <div class="bg-white rounded-2xl p-8 shadow-sm reveal">
+          <div class="text-4xl mb-4">👶</div>
+          <h3 class="font-display text-xl text-sage-700 mb-2">Peques Bienvenidos</h3>
+          <p id="info-kids" class="text-sage-600 font-light leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       REGALOS
+       ═══════════════════════════════════════════════════ -->
+  <section id="regalos" class="py-24 px-6 bg-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="ornament reveal"></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-4 reveal">Mesa de Regalos</h2>
+      <p id="gifts-message" class="text-sage-500 mb-12 reveal"></p>
+
+      <div id="gifts-container" class="grid gap-6 reveal">
+        <!-- gift cards injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       RSVP FORM (Embedded)
+       ═══════════════════════════════════════════════════ -->
+  <section id="form-rsvp" class="py-24 px-6 bg-sage-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="ornament reveal"></div>
+      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-4 reveal">Confirma tu Asistencia</h2>
+      <p class="text-sage-500 mb-12 reveal">Por favor, completa el siguiente formulario para confirmar tu asistencia.
+      </p>
+
+      <div id="rsvp-iframe-container"
+        class="w-full mx-auto overflow-hidden rounded-2xl shadow-sm reveal max-w-2xl bg-white border border-sage-200 min-h-[600px] flex items-center justify-center">
+        <!-- Iframe injected by JS -->
+        <p class="text-sage-500 p-8">Cargando formulario...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════════ -->
+  <footer class="py-16 px-6 bg-sage-800 text-center text-cream-100">
+    <p id="footer-msg" class="font-display text-2xl sm:text-3xl mb-3"></p>
+    <p id="footer-hashtag" class="text-sage-300 text-sm tracking-widest uppercase"></p>
+    <div class="mt-6 text-sage-400 text-xs">&copy; <span id="footer-year"></span></div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════════════ -->
+  <!-- Swiper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    /* ═══════════════════════════════════════════════════
+       BACKGROUND MUSIC
+       ═══════════════════════════════════════════════════ */
+    (function () {
+      const d = WEDDING;
+      const audio = document.getElementById('bg-music');
+      const toggle = document.getElementById('music-toggle');
+      const iconOn = document.getElementById('music-icon-on');
+      const iconOff = document.getElementById('music-icon-off');
+
+      // Set audio source and show toggle if a song is configured
+      if (d.music.songUrl) {
+        audio.src = d.music.songUrl;
+        audio.volume = 0.5;
+        toggle.classList.add('visible');
+      }
+
+      // Music toggle button
+      toggle.addEventListener('click', function () {
+        if (audio.paused) {
+          audio.play();
+          toggle.classList.add('playing');
+          iconOn.style.display = '';
+          iconOff.style.display = 'none';
+        } else {
+          audio.pause();
+          toggle.classList.remove('playing');
+          iconOn.style.display = 'none';
+          iconOff.style.display = '';
+        }
+      });
+    })();
+
+    /* ═══════════════════════════════════════════════════
+       HYDRATE PAGE FROM data.js
+       ═══════════════════════════════════════════════════ */
+    (function () {
+      const d = WEDDING;
+
+      // Hero slideshow
+      const slidesContainer = document.getElementById('hero-slides');
+      const heroImgs = d.heroImages || [];
+      heroImgs.forEach((url, i) => {
+        const slide = document.createElement('div');
+        slide.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        slide.style.backgroundImage = `url('${url}')`;
+        slidesContainer.appendChild(slide);
+      });
+      if (heroImgs.length > 1) {
+        let current = 0;
+        setInterval(() => {
+          const slides = slidesContainer.querySelectorAll('.hero-slide');
+          slides[current].classList.remove('active');
+          current = (current + 1) % slides.length;
+          slides[current].classList.add('active');
+        }, 3200);
+      }
+
+      // Hero
+      document.getElementById('hero-tagline').textContent = d.couple.tagline;
+      document.getElementById('hero-name1').textContent = d.couple.name1;
+      document.getElementById('hero-name2').textContent = d.couple.name2;
+      document.getElementById('hero-date').textContent = d.date.full;
+
+      // Detalles
+      document.getElementById('detail-date').textContent = d.date.full;
+      document.getElementById('detail-time').innerHTML = d.date.time.replace(/\n/g, '<br>');
+      if (d.date.detail) document.getElementById('detail-date-detail').textContent = d.date.detail;
+
+      // Ceremonia
+      document.getElementById('detail-ceremony-name').textContent = d.ceremony.name;
+      document.getElementById('detail-ceremony-address').textContent = d.ceremony.address;
+      document.getElementById('detail-ceremony-time').textContent = d.ceremony.time;
+      document.getElementById('detail-ceremony-maps').href = d.ceremony.mapsUrl;
+
+      // Recepción
+      document.getElementById('detail-reception-name').textContent = d.reception.name;
+      document.getElementById('detail-reception-address').textContent = d.reception.address;
+      document.getElementById('detail-reception-time').textContent = d.reception.time;
+      document.getElementById('detail-reception-maps').href = d.reception.mapsUrl;
+
+      // Add to Calendar (.ics download)
+      document.getElementById('add-to-calendar-btn').addEventListener('click', function () {
+        // Build ICS date format: YYYYMMDDTHHMMSS
+        const start = new Date(d.date.iso);
+        const end = new Date(start.getTime() + 5 * 60 * 60 * 1000); // 5 hours duration
+
+        function pad(n) { return String(n).padStart(2, '0'); }
+        function icsDate(dt) {
+          return dt.getFullYear() +
+            pad(dt.getMonth() + 1) +
+            pad(dt.getDate()) + 'T' +
+            pad(dt.getHours()) +
+            pad(dt.getMinutes()) +
+            pad(dt.getSeconds());
+        }
+
+        const ics = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Wedding//Site//EN',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          'DTSTART;TZID=America/Lima:' + icsDate(start),
+          'DTEND;TZID=America/Lima:' + icsDate(end),
+          'SUMMARY:Boda ' + d.couple.name1 + ' & ' + d.couple.name2,
+          'DESCRIPTION:Ceremonia: ' + d.ceremony.name + ' (' + d.ceremony.time + ')\\nRecepción: ' + d.reception.name + ' (' + d.reception.time + ')',
+          'LOCATION:' + d.ceremony.name + ' - ' + d.ceremony.address,
+          'STATUS:CONFIRMED',
+          'END:VEVENT',
+          'END:VCALENDAR',
+        ].join('\r\n');
+
+        const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'boda-' + d.couple.name1.toLowerCase() + '-' + d.couple.name2.toLowerCase() + '.ics';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // Gallery
+      const wrapper = document.getElementById('gallery-wrapper');
+      d.gallery.images.forEach((src) => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        slide.innerHTML = `<img src="${src}" alt="Foto de la pareja" loading="lazy" />`;
+        wrapper.appendChild(slide);
+      });
+      document.getElementById('album-link').href = d.gallery.albumUrl;
+
+      // Interaction
+      // RSVP Form Injection
+      if (d.interaction.rsvpUrl && d.interaction.rsvpUrl !== "#") {
+        document.getElementById('rsvp-iframe-container').innerHTML = `
+          <iframe src="${d.interaction.rsvpUrl}" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+        `;
+      } else {
+        document.getElementById('rsvp-iframe-container').innerHTML = `
+          <p class="text-sage-500 p-8">El formulario de asistencia estará disponible pronto.</p>
+        `;
+      }
+      document.getElementById('upload-btn').href = d.interaction.uploadPhotosUrl;
+      document.getElementById('music-btn').href = d.interaction.musicUrl;
+
+      // Info
+      document.getElementById('info-dress').textContent = d.info.dressCode;
+      document.getElementById('info-kids').textContent = d.info.kidsPolicy;
+
+      // Gifts
+      document.getElementById('gifts-message').textContent = d.gifts.message;
+      const giftsContainer = document.getElementById('gifts-container');
+      d.gifts.options.forEach((g) => {
+        const card = document.createElement('div');
+        card.className = 'gift-card bg-cream-50 border border-cream-200 rounded-2xl p-6 text-center';
+        card.innerHTML = `
+          <div class="mb-3 flex justify-center">${g.icon.startsWith('http') ? `<img src="${g.icon}" alt="${g.label}" class="w-12 h-12 object-contain" />` : `<span class="text-4xl">${g.icon}</span>`}</div>
+          <h3 class="font-display text-lg text-sage-700 mb-1">${g.label}</h3>
+          <p class="text-sage-500 text-sm">${g.detail.replace(/\n/g, '<br>')}</p>
+          ${g.url ? `<a href="${g.url}" target="_blank" rel="noopener" class="inline-block mt-4 px-5 py-2 border border-sage-300 text-sage-600 hover:bg-sage-100 rounded-full text-sm transition-colors">Transferir</a>` : ''}
+        `;
+        giftsContainer.appendChild(card);
+      });
+
+      // Footer
+      document.getElementById('footer-msg').textContent = d.footer.message;
+      document.getElementById('footer-hashtag').textContent = d.footer.hashtag;
+      document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+      /* ── Countdown Timer ──────────────────────────── */
+      const target = new Date(d.date.iso).getTime();
+      function updateCountdown() {
+        const now = Date.now();
+        const diff = Math.max(0, target - now);
+        const s = Math.floor(diff / 1000);
+        document.getElementById('cd-days').textContent = String(Math.floor(s / 86400)).padStart(2, '0');
+        document.getElementById('cd-hours').textContent = String(Math.floor((s % 86400) / 3600)).padStart(2, '0');
+        document.getElementById('cd-mins').textContent = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+        document.getElementById('cd-secs').textContent = String(s % 60).padStart(2, '0');
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+
+      /* ── Swiper Init ──────────────────────────────── */
+      new Swiper('.gallery-swiper', {
+        loop: true,
+        autoplay: { delay: 4000, disableOnInteraction: false },
+        pagination: { el: '.swiper-pagination', clickable: true },
+        spaceBetween: 16,
+        grabCursor: true,
+        breakpoints: {
+          640: { slidesPerView: 1.2 },
+          1024: { slidesPerView: 2.2 },
+        },
+      });
+
+      /* ── Reveal on Scroll (Intersection Observer) ── */
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      reveals.forEach((el) => observer.observe(el));
+
+      /* ── Floating Nav visibility & active dot ─────── */
+      const nav = document.getElementById('floating-nav');
+      const dots = nav.querySelectorAll('.nav-dot');
+      const sections = document.querySelectorAll('section[id], header[id]');
+
+      const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            dots.forEach((dot) => dot.classList.toggle('active', dot.dataset.section === e.target.id));
+          }
+        });
+      }, { rootMargin: '-40% 0px -40% 0px' });
+      sections.forEach((s) => navObserver.observe(s));
+
+      // Show nav after scrolling past hero
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('hidden-nav', window.scrollY < window.innerHeight * 0.5);
+      }, { passive: true });
+    })();
+  </script>
+</body>
+
+</html>
