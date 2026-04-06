@@ -585,7 +585,7 @@
 
   <script>
     /* ═══════════════════════════════════════════════════
-       BACKGROUND MUSIC
+       BACKGROUND MUSIC (autoplay on load)
        ═══════════════════════════════════════════════════ */
     (function () {
       const d = WEDDING;
@@ -594,25 +594,55 @@
       const iconOn = document.getElementById('music-icon-on');
       const iconOff = document.getElementById('music-icon-off');
 
-      // Set audio source and show toggle if a song is configured
+      function setPlayingUI() {
+        toggle.classList.add('playing');
+        iconOn.style.display = '';
+        iconOff.style.display = 'none';
+      }
+
+      function setPausedUI() {
+        toggle.classList.remove('playing');
+        iconOn.style.display = 'none';
+        iconOff.style.display = '';
+      }
+
       if (d.music.songUrl) {
         audio.src = d.music.songUrl;
         audio.volume = 0.5;
         toggle.classList.add('visible');
+
+        // Default to "playing" UI
+        setPlayingUI();
+
+        // Attempt autoplay
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function () {
+            // Browser blocked autoplay — start on first user interaction
+            var events = ['click', 'touchstart', 'scroll', 'keydown'];
+            function resumeOnInteraction() {
+              audio.play().then(function () {
+                setPlayingUI();
+              }).catch(function () {});
+              events.forEach(function (evt) {
+                document.removeEventListener(evt, resumeOnInteraction, { capture: true });
+              });
+            }
+            events.forEach(function (evt) {
+              document.addEventListener(evt, resumeOnInteraction, { capture: true, once: false });
+            });
+          });
+        }
       }
 
-      // Music toggle button
+      // Music toggle button — now used to pause / resume
       toggle.addEventListener('click', function () {
         if (audio.paused) {
           audio.play();
-          toggle.classList.add('playing');
-          iconOn.style.display = '';
-          iconOff.style.display = 'none';
+          setPlayingUI();
         } else {
           audio.pause();
-          toggle.classList.remove('playing');
-          iconOn.style.display = 'none';
-          iconOff.style.display = '';
+          setPausedUI();
         }
       });
     })();
