@@ -111,8 +111,10 @@
     .hero-slide {
       position: absolute;
       inset: 0;
-      background-size: cover;
-      background-position: center 45%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-color: #16283f;
       background-attachment: scroll;
       transition: opacity 1.2s ease-in-out;
       opacity: 0;
@@ -124,6 +126,8 @@
 
     @media (min-width: 768px) {
       .hero-slide {
+        background-size: cover;
+        background-position: center 45%;
         background-attachment: fixed;
       }
     }
