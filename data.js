@@ -17,8 +17,14 @@ const WEDDING = {
   /* ── Hero Background Images (crossfade slideshow) ───────── */
   // Add as many images as you want — they'll cycle with a smooth fade
   heroImages: [
-    "https://drive.google.com/thumbnail?id=1wlL9o-tRq4FzGoGQZMPWrEayPJFICIAW&sz=w1024",
-    "https://drive.google.com/thumbnail?id=1ig2nhsSG2xzzXLKtIBalfqqzirqeH7zU&sz=w1024",
+    "https://drive.google.com/thumbnail?id=13Sd6yifjhnSYglSinkO7BWiUnh3B_z6H&sz=w1024", // corazon
+
+    "https://drive.google.com/thumbnail?id=1zSBP9Ytjql5g5Lx684BNDLPMbGNVxJNV&sz=w1024", // mirando al sol
+
+    "https://drive.google.com/thumbnail?id=1s9SLuHB9wahUu_fmZ9iGvTyfm3suJSqr&sz=w1024", // charango
+
+    //"https://drive.google.com/thumbnail?id=1wlL9o-tRq4FzGoGQZMPWrEayPJFICIAW&sz=w1024", // foto de los dos
+    "https://drive.google.com/thumbnail?id=1ig2nhsSG2xzzXLKtIBalfqqzirqeH7zU&sz=w1024", // flor
   ],
 
   /* ── Date & Time ────────────────────────────────────────── */
@@ -52,12 +58,28 @@ const WEDDING = {
   gallery: {
     // Replace these with real image URLs or local paths
     images: [
-      "https://drive.google.com/thumbnail?id=1ig2nhsSG2xzzXLKtIBalfqqzirqeH7zU&sz=w800",
-      "https://drive.google.com/thumbnail?id=1dx3fcSfcZ9FKonQejWP9IXMTuJo7HCwD&sz=w800",
-      "https://drive.google.com/thumbnail?id=1JTCKxVbmMlZdBE1DCxBQLDR4VARDUax0&sz=w800",
-      "https://drive.google.com/thumbnail?id=1QdqPAVyYJskNla7bhJ5vU7rOXDIrG4vT&sz=w800",
-      "https://drive.google.com/thumbnail?id=1CkUFRTW9KRSD61W8Xf4w-H-SP-fnFped&sz=w800",
-      "https://drive.google.com/thumbnail?id=1Rm9AuD03OnxR5Lvh6Kl0LA4V-HY6y8Ix&sz=w800",
+      "https://drive.google.com/thumbnail?id=1weaSg_zuUEoa3_nHJZS_bgQdM4yfhxpw&sz=w800",
+      "https://drive.google.com/thumbnail?id=1sX4KVt2mMpXzkafVNGV9wuPAMrqxjNnt&sz=w800",
+      "https://drive.google.com/thumbnail?id=1u-BIzqhBssPwqWdwBfCCfLkAg146k132&sz=w800",
+      "https://drive.google.com/thumbnail?id=1SuUoNK7FL7_vYn4ZxVQV5lWUl6ndvTkz&sz=w800",
+      "https://drive.google.com/thumbnail?id=180Tz56t1-ZWigP1CfONMmJKOTC0AJAPL&sz=w800",
+      "https://drive.google.com/thumbnail?id=11eCs0ZBs9Pfxo-0Hss-YelBdC183htj4&sz=w800",
+      "https://drive.google.com/thumbnail?id=1R_-SH_Y_8f1scfy0DMfkTWKzSdXuBMZs&sz=w800",
+      "https://drive.google.com/thumbnail?id=1m7tVhiybgyn_q1XV9b98gVz55vRJY1ix&sz=w800",
+      "https://drive.google.com/thumbnail?id=1Hv420y6w4c_nwqczD4B_oHvpykN_Qatq&sz=w800",
+      "https://drive.google.com/thumbnail?id=119Z41e_WwlMHbLdbG4b5W4qBvi8NO1E4&sz=w800",
+      "https://drive.google.com/thumbnail?id=1bvDZoUBAjW7vdhIF5u3hXAD6zaW8FgXS&sz=w800",
+      "https://drive.google.com/thumbnail?id=1T_ggnjJM6w8ZiR-d03uXS92oFcQvFrIV&sz=w800",
+      "https://drive.google.com/thumbnail?id=1sB1peAw_4WPxRR_ya4l9Z-XWZVdJzU2_&sz=w800",
+      "https://drive.google.com/thumbnail?id=1YEIqVTWkz2QX4v1m-VuC7i7G9w64srUW&sz=w800",
+      "https://drive.google.com/thumbnail?id=11BqATKurwoHXe--eX9xdBW17nz9lD9Al&sz=w800",
+
+      //"https://drive.google.com/thumbnail?id=1ig2nhsSG2xzzXLKtIBalfqqzirqeH7zU&sz=w800",
+      //"https://drive.google.com/thumbnail?id=1dx3fcSfcZ9FKonQejWP9IXMTuJo7HCwD&sz=w800",
+      //"https://drive.google.com/thumbnail?id=1JTCKxVbmMlZdBE1DCxBQLDR4VARDUax0&sz=w800",
+      //"https://drive.google.com/thumbnail?id=1QdqPAVyYJskNla7bhJ5vU7rOXDIrG4vT&sz=w800", flor
+      //"https://drive.google.com/thumbnail?id=1CkUFRTW9KRSD61W8Xf4w-H-SP-fnFped&sz=w800",
+      //"https://drive.google.com/thumbnail?id=1Rm9AuD03OnxR5Lvh6Kl0LA4V-HY6y8Ix&sz=w800",
     ],
     // Optional link to a full Google Photos album
     albumUrl: "https://photos.app.goo.gl/QXHvRE8wt4gdPC3Y9",  // <-- paste your Google Photos album link here

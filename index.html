@@ -112,7 +112,7 @@
       position: absolute;
       inset: 0;
       background-size: cover;
-      background-position: center 65%;
+      background-position: center 45%;
       background-attachment: scroll;
       transition: opacity 1.2s ease-in-out;
       opacity: 0;
@@ -445,7 +445,7 @@
   <section id="galeria" class="py-24 px-6 bg-white">
     <div class="max-w-5xl mx-auto text-center">
       <div class="ornament reveal"></div>
-      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-4 reveal">Nuestra Historia</h2>
+      <h2 class="font-display text-3xl sm:text-4xl text-sage-800 mb-4 reveal">Nuestros Momentos</h2>
       <p class="text-sage-500 mb-12 reveal">Algunos de nuestros momentos favoritos juntos</p>
 
       <!-- Swiper -->
@@ -623,7 +623,7 @@
         audio.play().then(function () {
           setPlayingUI();
           cleanupAutoResume();
-        }).catch(function () {});
+        }).catch(function () { });
       }
 
       if (d.music.songUrl) {
@@ -651,7 +651,7 @@
       toggle.addEventListener('click', function () {
         if (audio.paused) {
           userPaused = false;
-          audio.play().then(setPlayingUI).catch(function () {});
+          audio.play().then(setPlayingUI).catch(function () { });
         } else {
           userPaused = true;
           audio.pause();
