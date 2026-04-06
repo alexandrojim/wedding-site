@@ -83,7 +83,7 @@ const WEDDING = {
       //"https://drive.google.com/thumbnail?id=1Rm9AuD03OnxR5Lvh6Kl0LA4V-HY6y8Ix&sz=w800",
     ],
     // Optional link to a full Google Photos album
-    albumUrl: "https://photos.app.goo.gl/QXHvRE8wt4gdPC3Y9",  // <-- paste your Google Photos album link here
+    albumUrl: "https://photos.app.goo.gl/8j3B1R3D1D63Lsch9",  // <-- paste your Google Photos album link here
   },
 
   /* ── Interaction ────────────────────────────────────────── */
