@@ -22,7 +22,8 @@ const WEDDING = {
     "https://drive.google.com/thumbnail?id=1zSBP9Ytjql5g5Lx684BNDLPMbGNVxJNV&sz=w1024", // mirando al sol
 
     //"https://drive.google.com/thumbnail?id=1s9SLuHB9wahUu_fmZ9iGvTyfm3suJSqr&sz=w1024", // charango
-    "https://drive.google.com/thumbnail?id=17LXsw5a11DgHGcvJKMWFlVrkAaim5MSA&sz=w1024",
+    //"https://drive.google.com/thumbnail?id=17LXsw5a11DgHGcvJKMWFlVrkAaim5MSA&sz=w1024",
+    "https://drive.google.com/thumbnail?id=1ouhcElSPvfTTzKTOVixWSugmTH5ssPue&sz=w1024",
 
     //"https://drive.google.com/thumbnail?id=1wlL9o-tRq4FzGoGQZMPWrEayPJFICIAW&sz=w1024", // foto de los dos
     "https://drive.google.com/thumbnail?id=1ig2nhsSG2xzzXLKtIBalfqqzirqeH7zU&sz=w1024", // flor
