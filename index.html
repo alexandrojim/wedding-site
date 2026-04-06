@@ -593,6 +593,7 @@
       const toggle = document.getElementById('music-toggle');
       const iconOn = document.getElementById('music-icon-on');
       const iconOff = document.getElementById('music-icon-off');
+      var userPaused = false; // true when user explicitly pauses via toggle
 
       function setPlayingUI() {
         toggle.classList.add('playing');
@@ -606,44 +607,58 @@
         iconOff.style.display = '';
       }
 
+      function cleanupAutoResume() {
+        ['click', 'touchstart', 'keydown'].forEach(function (evt) {
+          document.removeEventListener(evt, resumeOnInteraction, true);
+        });
+      }
+
+      function resumeOnInteraction(e) {
+        // Don't auto-resume if the user clicked the toggle button itself
+        // (the toggle has its own handler)
+        if (toggle.contains(e.target)) return;
+        // Don't auto-resume if the user already explicitly paused
+        if (userPaused) { cleanupAutoResume(); return; }
+
+        audio.play().then(function () {
+          setPlayingUI();
+          cleanupAutoResume();
+        }).catch(function () {});
+      }
+
       if (d.music.songUrl) {
         audio.src = d.music.songUrl;
         audio.volume = 0.5;
         toggle.classList.add('visible');
 
-        // Default to "playing" UI
-        setPlayingUI();
-
         // Attempt autoplay
-        const playPromise = audio.play();
+        var playPromise = audio.play();
         if (playPromise !== undefined) {
-          playPromise.catch(function () {
-            // Browser blocked autoplay — start on first user interaction
-            var events = ['click', 'touchstart', 'scroll', 'keydown'];
-            function resumeOnInteraction() {
-              audio.play().then(function () {
-                setPlayingUI();
-              }).catch(function () {});
-              events.forEach(function (evt) {
-                document.removeEventListener(evt, resumeOnInteraction, { capture: true });
-              });
-            }
-            events.forEach(function (evt) {
-              document.addEventListener(evt, resumeOnInteraction, { capture: true, once: false });
+          playPromise.then(function () {
+            // Autoplay succeeded
+            setPlayingUI();
+          }).catch(function () {
+            // Browser blocked autoplay — show paused UI and wait
+            setPausedUI();
+            ['click', 'touchstart', 'keydown'].forEach(function (evt) {
+              document.addEventListener(evt, resumeOnInteraction, true);
             });
           });
         }
       }
 
-      // Music toggle button — now used to pause / resume
+      // Music toggle button — pause / resume
       toggle.addEventListener('click', function () {
         if (audio.paused) {
-          audio.play();
-          setPlayingUI();
+          userPaused = false;
+          audio.play().then(setPlayingUI).catch(function () {});
         } else {
+          userPaused = true;
           audio.pause();
           setPausedUI();
         }
+        // In case auto-resume listeners are still active, clean them up
+        cleanupAutoResume();
       });
     })();
 
